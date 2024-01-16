@@ -7,7 +7,7 @@ export class FileSystemDataSource implements LogDataSource {
 
     private readonly logPath: string = "logs/";
 
-    private readonly allLogsPath: string    = "logs/logs-low.log";
+    private readonly allLogsPath: string    = "logs/logs-all.log";
     private readonly mediumLogsPath: string = "logs/logs-medium.log";
     private readonly highLogsPath: string   = "logs/logs-high.log";
 
@@ -54,7 +54,7 @@ export class FileSystemDataSource implements LogDataSource {
 
     async getLogs(severityLevel: LogSeverityLevel): Promise<LogEntity[]> {
         switch (severityLevel) {
-            case LogSeverityLevel.LOW:
+            case LogSeverityLevel.ALL:
                 return this.getLogsFromFile(this.allLogsPath);
             case LogSeverityLevel.MEDIUM:
                 return this.getLogsFromFile(this.mediumLogsPath);
