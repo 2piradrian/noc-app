@@ -39,21 +39,9 @@ export class EmailService {
                 attachments: attachments
             });
 
-            const log = new LogEntity({
-                level: LogSeverityLevel.MEDIUM,
-                message: `Email sent to ${to}`,
-                origin: "email-service.ts",
-            })
-
             return true;
         }
         catch(error){
-
-            const log = new LogEntity({
-                level: LogSeverityLevel.MEDIUM,
-                message: `Email not sent to ${to}`,
-                origin: "email-service.ts",
-            })
 
             return false;
         }

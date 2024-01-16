@@ -20,4 +20,5 @@ npx tsc --init --outDir dist/ --rootDir src
   "start": "npm run build && node dist/app.js"
 ```
 # MAILER
+[Google AppPasswords](https://myaccount.google.com/u/0/apppasswords)
 
