@@ -1,5 +1,5 @@
 export enum LogSeverityLevel {
-    ALL = 'ALL',
+    LOW = 'LOW',
     MEDIUM = 'MEDIUM',
     HIGH = 'HIGH',
 }
@@ -12,6 +12,7 @@ interface LogOptions {
 }
 
 export class LogEntity {
+    [x: string]: any;
     public level: LogSeverityLevel;
     public message: string;
     public createdAt: Date;

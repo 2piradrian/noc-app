@@ -7,7 +7,7 @@ export class FileSystemDataSource implements LogDataSource {
 
     private readonly logPath: string = "logs/";
 
-    private readonly allLogsPath: string    = "logs/logs-all.log";
+    private readonly lowLogsPath: string    = "logs/logs-low.log";
     private readonly mediumLogsPath: string = "logs/logs-medium.log";
     private readonly highLogsPath: string   = "logs/logs-high.log";
 
@@ -20,7 +20,7 @@ export class FileSystemDataSource implements LogDataSource {
             fs.mkdirSync(this.logPath);
         }
 
-        [this.allLogsPath, this.mediumLogsPath, this.highLogsPath]
+        [this.lowLogsPath, this.mediumLogsPath, this.highLogsPath]
         .forEach((path) => {
             if (!fs.existsSync(path)) {
                 fs.writeFileSync(path, "");
@@ -38,7 +38,7 @@ export class FileSystemDataSource implements LogDataSource {
     async saveLog(log: LogEntity): Promise<void> {
         const logAsJSON = `${JSON.stringify(log)}\n`;
 
-        fs.appendFileSync(this.allLogsPath, logAsJSON);
+        fs.appendFileSync(this.lowLogsPath, logAsJSON);
 
         switch (log.level) {
             case LogSeverityLevel.MEDIUM:
@@ -54,8 +54,8 @@ export class FileSystemDataSource implements LogDataSource {
 
     async getLogs(severityLevel: LogSeverityLevel): Promise<LogEntity[]> {
         switch (severityLevel) {
-            case LogSeverityLevel.ALL:
-                return this.getLogsFromFile(this.allLogsPath);
+            case LogSeverityLevel.LOW:
+                return this.getLogsFromFile(this.lowLogsPath);
             case LogSeverityLevel.MEDIUM:
                 return this.getLogsFromFile(this.mediumLogsPath);
             case LogSeverityLevel.HIGH:
