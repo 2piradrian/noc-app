@@ -1,6 +1,4 @@
-import { CheckService } from "../domain/use-cases/checks/check-service";
 import { CheckServiceMulti } from "../domain/use-cases/checks/check-service-multi";
-import { SendEmailLogs } from "../domain/use-cases/email/send-email-logs";
 import { FileSystemDataSource } from "../infrastructure/data-sources/file-system";
 import { MongoDataSource } from "../infrastructure/data-sources/mongo-log";
 import { PostgresDataSource } from "../infrastructure/data-sources/postgres-log";
